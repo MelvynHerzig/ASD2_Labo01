@@ -11,53 +11,63 @@
 
 typedef std::list<int> Iterable;
 
-GraphUsingAdjacencyMatrix::GraphUsingAdjacencyMatrix(std::istream& s) {
-    int V, E, v, w;
-    s >> V;
-    s >> E;
-    Init(V);
-    for (int i = 0; i < E; i++) {
-        s >> v;
-        s >> w;
-        addEdge(v, w);
-    }
+GraphUsingAdjacencyMatrix::GraphUsingAdjacencyMatrix (std::istream &s)
+{
+   int V, E, v, w;
+   s >> V;
+   s >> E;
+   Init(V);
+   for (int i = 0; i < E; i++)
+   {
+      s >> v;
+      s >> w;
+      addEdge(v, w);
+   }
 }
 
-GraphUsingAdjacencyMatrix::GraphUsingAdjacencyMatrix(int V) {
-    Init(V);
+GraphUsingAdjacencyMatrix::GraphUsingAdjacencyMatrix (int V)
+{
+   Init(V);
 }
 
 // ajoute une arete
-void GraphUsingAdjacencyMatrix::addEdge(int v, int w) {
-/****
-*
-*  A IMPLEMENTER
-*
-****/
+void GraphUsingAdjacencyMatrix::addEdge (int v, int w)
+{
+
+   adjMatrix.at(v).at(w) = true;
+   adjMatrix.at(w).at(v) = true;
 }
 
 // voisins du sommet v
-Iterable GraphUsingAdjacencyMatrix::adjacent(int v) const {
-/****
-*
-*  A IMPLEMENTER
-*
-****/
+Iterable GraphUsingAdjacencyMatrix::adjacent (int v) const
+{
+
+   Iterable adj;
+
+   for (int w = 0; w < V(); ++w)
+   {
+      if (adjMatrix.at(v)[w])
+      {
+         adj.push_back(w);
+      }
+   }
+   return adj;
 }
 
 // ordre du graphe
-int GraphUsingAdjacencyMatrix::V() const {
-/****
-*
-*  A IMPLEMENTER
-*
-****/
+int GraphUsingAdjacencyMatrix::V () const
+{
+   return (int) adjMatrix.size();
 }
 
-void GraphUsingAdjacencyMatrix::Init(int V) {
-    adjMatrix.resize(V);
-    for (int v = 0; v < V; v++)
-        adjMatrix[v].resize(V);
+void GraphUsingAdjacencyMatrix::Init (int V)
+{
+
+   adjMatrix.resize(V);
+   for (int v = 0; v < V; v++)
+   {
+      adjMatrix[v].resize(V);
+   }
 }
 
 

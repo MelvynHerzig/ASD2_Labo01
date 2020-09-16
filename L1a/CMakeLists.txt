@@ -3,4 +3,4 @@ project(L1a)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(L1a main.cpp)
+add_executable(L1a main.cpp BFS.h CC.h DFS.h GraphUsingAdjacencyMatrix.cpp GraphUsingAdjacencyMatrix.h)

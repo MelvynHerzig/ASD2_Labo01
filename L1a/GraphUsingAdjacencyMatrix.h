@@ -12,32 +12,33 @@
 #include <vector>
 #include <istream>
 
-class GraphUsingAdjacencyMatrix {
+class GraphUsingAdjacencyMatrix
+{
 public:
-    typedef std::list<int> Iterable;
+   typedef std::list<int> Iterable;
 
-    GraphUsingAdjacencyMatrix(std::istream& s);
+   GraphUsingAdjacencyMatrix (std::istream &s);
 
-    GraphUsingAdjacencyMatrix(int V);
+   GraphUsingAdjacencyMatrix (int V);
 
-    // ajoute une arete
-    void addEdge(int v, int w);
+   // ajoute une arete
+   void addEdge (int v, int w);
 
-    // voisins du sommet v
-    Iterable adjacent(int v) const;
+   // voisins du sommet v
+   Iterable adjacent (int v) const;
 
-    // ordre du graphe
-    int V() const;
+   // ordre du graphe
+   int V () const;
 
 private:
-    // constructeurs non autorises
-    GraphUsingAdjacencyMatrix(const GraphUsingAdjacencyMatrix& G);
+   // constructeurs non autorises
+   GraphUsingAdjacencyMatrix (const GraphUsingAdjacencyMatrix &G);
 
-    GraphUsingAdjacencyMatrix();
+   GraphUsingAdjacencyMatrix ();
 
-    void Init(int V);
+   void Init (int V);
 
-    std::vector<std::vector<bool>> adjMatrix;
+   std::vector<std::vector<bool>> adjMatrix;
 };
 
 

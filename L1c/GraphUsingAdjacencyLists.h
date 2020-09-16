@@ -1,5 +1,5 @@
 #ifndef GRAPH_USING_ADJACENCYLISTS_H
-#define    GRAPH_USING_ADJACENCYLISTS_H
+#define GRAPH_USING_ADJACENCYLISTS_H
 
 #include <iostream>
 #include <list>
