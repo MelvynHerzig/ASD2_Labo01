@@ -34,3 +34,6 @@
 ### JetBrains template
 .idea
 cmake-build-debug
+
+### Add by Quentin Forestier
+*.txt
