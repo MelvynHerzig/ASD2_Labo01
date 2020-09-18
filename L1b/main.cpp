@@ -29,7 +29,10 @@ int main(int argc, char** argv) {
 *
 *  Question BONUS :
 *  Pourquoi utilisons-nous la classe DFSIter et non la classe DFS pour parcourir l'image ?
-//EDIT ...
+*
+*  DFSIter permet de parcourir l'image sans utiliser de récursion, cela nous permet donc
+*  d'éviter des récursion profondes avec des grandes images, ce qui risquerait de faire
+*  crasher le programme.
 *
 ****/
 

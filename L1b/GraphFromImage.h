@@ -44,12 +44,10 @@ public:
 
 // ELEMENTS PRIVES: LIBRE D'AJOUTER DES ELEMENTS
 private:
+
+   bool comparePixelColor( int x1, int y1, int x2, int y2) const;
+
    const bitmap_image &image;
-/****
-*
-*  AJOUTEZ ICI VOS ELEMENTS PRIVES
-*
-****/
 };
 
 #endif   /* GRAPHFROMIMAGE_H */

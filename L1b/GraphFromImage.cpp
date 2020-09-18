@@ -8,9 +8,7 @@
 #include "GraphFromImage.h"
 
 GraphFromImage::GraphFromImage (const bitmap_image &i) : image(i)
-{
-
-}
+{}
 
 // throws std::out_of_range
 GraphFromImage::Iterable GraphFromImage::adjacent (int v) const
@@ -22,9 +20,43 @@ GraphFromImage::Iterable GraphFromImage::adjacent (int v) const
    vPx = x(v);
    vPy = y(v);
 
-   if(vPx > 0 && )
+   // Pixel gauche
+   if(vPx > 0)
+   {
+      if( comparePixelColor(vPx, vPy, vPx-1, vPy) )
+      {
+         adj.push_back(idx(vPx - 1, vPy));
+      }
+   }
 
+   // Pixel haut
+   if(vPy > 0)
+   {
+      if( comparePixelColor(vPx, vPy, vPx, vPy - 1) )
+      {
+         adj.push_back(idx(vPx, vPy - 1));
+      }
+   }
 
+   // Pixel droite
+   if(vPx < image.width() - 1)
+   {
+      if( comparePixelColor(vPx, vPy, vPx + 1, vPy) )
+      {
+         adj.push_back(idx(vPx + 1, vPy));
+      }
+   }
+
+   // Pixel bas
+   if(vPy < image.height() - 1)
+   {
+      if( comparePixelColor(vPx, vPy, vPx, vPy + 1) )
+      {
+         adj.push_back(idx(vPx, vPy + 1));
+      }
+   }
+
+   return adj;
 }
 
 // throws std::out_of_range
@@ -56,4 +88,15 @@ int GraphFromImage::y (int idx) const
 int GraphFromImage::V () const
 {
    return image.width() * image.height();
+}
+
+bool GraphFromImage::comparePixelColor( int x1, int y1, int x2, int y2) const
+{
+   unsigned char r1, g1, b1;
+   unsigned char r2, g2, b2;
+
+   image.get_pixel(x1, y1, r1, g1, b1);
+   image.get_pixel(x2, y2, r2, g2, b2);
+
+   return r1 == r2 && g1 == g2  && b1 == b2;
 }

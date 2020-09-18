@@ -33,7 +33,6 @@ GraphUsingAdjacencyMatrix::GraphUsingAdjacencyMatrix (int V)
 // ajoute une arete
 void GraphUsingAdjacencyMatrix::addEdge (int v, int w)
 {
-
    adjMatrix.at(v).at(w) = true;
    adjMatrix.at(w).at(v) = true;
 }

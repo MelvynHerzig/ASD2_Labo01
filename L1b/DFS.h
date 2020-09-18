@@ -15,104 +15,133 @@
 #include <algorithm>
 
 template<typename GraphType>
-class DFSIter {
+class DFSIter
+{
 private:
-    const GraphType& g;
-    std::vector<bool> preMarked;
-    std::vector<bool> postMarked;
+   const GraphType &g;
+   std::vector<bool> preMarked;
+   std::vector<bool> postMarked;
 
 public:
-    DFSIter(const GraphType& G) : g(G) {
-        reset();
-    }
+   DFSIter (const GraphType &G) : g(G)
+   {
+      reset();
+   }
 
-    void reset() {
-        preMarked.assign(g.V(), false);
-        postMarked.assign(g.V(), false);
-    }
+   void reset ()
+   {
+      preMarked.assign(g.V(), false);
+      postMarked.assign(g.V(), false);
+   }
 
-    template<typename FuncPre, typename FuncPost>
-    void visitGraph(FuncPre fpre, FuncPost fpost) { // visit the whole graph
-        for (int v = 0; v < g.V(); ++v)
-            if (!preMarked[v])
-                visit(v, fpre, fpost);
-    }
+   template<typename FuncPre, typename FuncPost>
+   void visitGraph (FuncPre fpre, FuncPost fpost)
+   { // visit the whole graph
+      for (int v = 0; v < g.V(); ++v)
+      {
+         if (!preMarked[v])
+         {
+            visit(v, fpre, fpost);
+         }
+      }
+   }
 
-    template<typename FuncPre, typename FuncPost>
-    void visit(int v, FuncPre fpre, FuncPost fpost) {
+   template<typename FuncPre, typename FuncPost>
+   void visit (int v, FuncPre fpre, FuncPost fpost)
+   {
 
-        std::stack<int> pile;
-        pile.push(v);
+      std::stack<int> pile;
+      pile.push(v);
 
-        while (!pile.empty()) {
-            v = pile.top();
-            pile.pop();
+      while (!pile.empty())
+      {
+         v = pile.top();
+         pile.pop();
 
-            if (postMarked[v]) continue;
+         if (postMarked[v])
+         { continue; }
 
-            if (preMarked[v]) {
-                postMarked[v] = true;
-                fpost(v);
-                continue;
+         if (preMarked[v])
+         {
+            postMarked[v] = true;
+            fpost(v);
+            continue;
+         }
+
+         preMarked[v] = true;
+         fpre(v);
+         pile.push(v);
+
+         decltype(g.adjacent(v)) adj = g.adjacent(v);
+         // auto ferait une copie des listes rendues en référence.
+         // utiliser decltype(...) évite cette copie inutile.
+
+         std::for_each(adj.crbegin(), adj.crend(), [&] (int w)
+         {
+            // parcours à l'envers pour obtenir un ordre identique
+            // à l'implantation récursive.
+            if (!preMarked[w])
+            {
+               pile.push(w);
             }
-
-            preMarked[v] = true;
-            fpre(v);
-            pile.push(v);
-
-            decltype(g.adjacent(v)) adj = g.adjacent(v);
-            // auto ferait une copie des listes rendues en référence.
-            // utiliser decltype(...) évite cette copie inutile.
-
-            std::for_each(adj.crbegin(), adj.crend(), [&](int w) {
-                // parcours à l'envers pour obtenir un ordre identique
-                // à l'implantation récursive.
-                if (!preMarked[w])
-                    pile.push(w);
-            });
-        }
-    }
+         });
+      }
+   }
 };
 
 template<typename GraphType>
-class DFS {
+class DFS
+{
 private:
-    const GraphType& g;
-    std::vector<bool> marked;
+   const GraphType &g;
+   std::vector<bool> marked;
 
 public:
-    DFS(const GraphType& G) : g(G) {
-        reset();
-    }
+   DFS (const GraphType &G) : g(G)
+   {
+      reset();
+   }
 
-    void reset() {
-        marked.assign(g.V(), false);
-    }
+   void reset ()
+   {
+      marked.assign(g.V(), false);
+   }
 
-    // visit the whole graph from vertex 0
-    template<typename FuncPre, typename FuncPost>
-    void visitGraph(FuncPre fpre, FuncPost fpost) {
-        for (int v = 0; v < g.V(); ++v)
-            if (!marked[v])
-                recursion(v, fpre, fpost);
-    }
+   // visit the whole graph from vertex 0
+   template<typename FuncPre, typename FuncPost>
+   void visitGraph (FuncPre fpre, FuncPost fpost)
+   {
+      for (int v = 0; v < g.V(); ++v)
+      {
+         if (!marked[v])
+         {
+            recursion(v, fpre, fpost);
+         }
+      }
+   }
 
-    template<typename FuncPre, typename FuncPost>
-    void visit(int v, FuncPre fpre, FuncPost fpost) {
-        recursion(v, fpre, fpost);
-    }
+   template<typename FuncPre, typename FuncPost>
+   void visit (int v, FuncPre fpre, FuncPost fpost)
+   {
+      recursion(v, fpre, fpost);
+   }
 
 private:
-    template<typename FuncPre, typename FuncPost>
-    void recursion(int v, FuncPre fpre, FuncPost fpost) {
-        fpre(v);
-        marked[v] = true;
+   template<typename FuncPre, typename FuncPost>
+   void recursion (int v, FuncPre fpre, FuncPost fpost)
+   {
+      fpre(v);
+      marked[v] = true;
 
-        for (int w : g.adjacent(v))
-            if (!marked[w])
-                recursion(w, fpre, fpost);
-        fpost(v);
-    }
+      for (int w : g.adjacent(v))
+      {
+         if (!marked[w])
+         {
+            recursion(w, fpre, fpost);
+         }
+      }
+      fpost(v);
+   }
 };
 
 #endif
