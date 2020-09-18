@@ -21,39 +21,27 @@ GraphFromImage::Iterable GraphFromImage::adjacent (int v) const
    vPy = y(v);
 
    // Pixel gauche
-   if(vPx > 0)
+   if(vPx > 0 && comparePixelColor(vPx, vPy, vPx-1, vPy))
    {
-      if( comparePixelColor(vPx, vPy, vPx-1, vPy) )
-      {
-         adj.push_back(idx(vPx - 1, vPy));
-      }
+      adj.push_back(idx(vPx - 1, vPy));
    }
 
    // Pixel haut
-   if(vPy > 0)
+   if(vPy > 0 && comparePixelColor(vPx, vPy, vPx, vPy - 1))
    {
-      if( comparePixelColor(vPx, vPy, vPx, vPy - 1) )
-      {
-         adj.push_back(idx(vPx, vPy - 1));
-      }
+      adj.push_back(idx(vPx, vPy - 1));
    }
 
    // Pixel droite
-   if(vPx < image.width() - 1)
+   if(vPx < image.width() - 1 && comparePixelColor(vPx, vPy, vPx + 1, vPy))
    {
-      if( comparePixelColor(vPx, vPy, vPx + 1, vPy) )
-      {
-         adj.push_back(idx(vPx + 1, vPy));
-      }
+      adj.push_back(idx(vPx + 1, vPy));
    }
 
    // Pixel bas
-   if(vPy < image.height() - 1)
+   if(vPy < image.height() - 1 && comparePixelColor(vPx, vPy, vPx, vPy + 1))
    {
-      if( comparePixelColor(vPx, vPy, vPx, vPy + 1) )
-      {
-         adj.push_back(idx(vPx, vPy + 1));
-      }
+      adj.push_back(idx(vPx, vPy + 1));
    }
 
    return adj;
