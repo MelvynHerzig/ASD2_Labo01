@@ -27,14 +27,23 @@ private:
 
    Graph* g;
 
+   /**
+    * @brief stocke les noms associés au no de sommet dans g.
+    * @details
+    *           Soit:
+    *           N = nombre d'auteurs et de films
+    *           M = 3 * sizeof(void*) + sizeof(key) + sizeof(value)
+    *
+    *           Accès en O(log(N)
+    *           Empreinte en O(N * M)
+    *
+    *           Il est claire que la structure de stockage n'est pas la plus optimisée
+    *           d'un point de vue vitesse place, mais elle reste un bon compromis car
+    *           elle peut être créée en même temps que la lecture du fichier. De plus
+    *           elle offre un mécanisme natif anti doublon.
+    */
    std::map< std::string, int> m;
 
-/****
-*
-*  AJOUTEZ ICI VOS STRUCTURES PRIVEES
-*  Justifiez le choix de vos structures de données en fonction de la complexité (mémoire et processeur)
-*
-****/
 public:
 
    ~SymbolGraph ()
@@ -47,6 +56,7 @@ public:
    {
       std::string line;
       std::ifstream s(filename);
+
       int cnt = 0;
       int currentFilm = 0;
       bool isFilm;
