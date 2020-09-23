@@ -16,31 +16,21 @@
 
 using namespace std;
 
-int main(int argc, char **argv) {
+int main (int argc, char **argv)
+{
 
-    string file("movies.txt");
-    string source("Eric Beaver");
-    string sink("Kevin Bacon");
+   string file("movies.txt");
+   string source("Eric Beaver");
+   string sink("Kevin Bacon");
 
-    SymbolGraph<GraphUsingAdjacencyLists> SG(file, '|');
+   SymbolGraph<GraphUsingAdjacencyLists> SG(file, '|');
 
-    BFS<GraphUsingAdjacencyLists> bfs(SG.G());
-    bfs.visit(SG.index(sink), [](int) {});
+   BFS<GraphUsingAdjacencyLists> bfs(SG.G());
+   bfs.visit(SG.index(sink), [] (int)
+   {});
 
-    // Affiche le chemin acteur->film->acteur->...->film->acteur
-    cout << "Chemin entre " << source << " et " << sink << " :" << endl;
-
-/****
-*
-*  A IMPLEMENTER
-*
-****/
-
-    cout << endl;
-
-    // Affiche les films dans lesquels Keanu Reeves a joué
-    string actor = "Keanu Reeves";
-    cout << "Tous les films avec " << actor << " : " << endl;
+   // Affiche le chemin acteur->film->acteur->...->film->acteur
+   cout << "Chemin entre " << source << " et " << sink << " :" << endl;
 
 /****
 *
@@ -48,6 +38,18 @@ int main(int argc, char **argv) {
 *
 ****/
 
-    return EXIT_SUCCESS;
+   cout << endl;
+
+   // Affiche les films dans lesquels Keanu Reeves a joué
+   string actor = "Keanu Reeves";
+   cout << "Tous les films avec " << actor << " : " << endl;
+
+/****
+*
+*  A IMPLEMENTER
+*
+****/
+
+   return EXIT_SUCCESS;
 }
 
