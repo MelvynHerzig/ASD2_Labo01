@@ -6,6 +6,8 @@
  * Inspiré par http://oracleofbacon.org 
  * 
  * Created on 26. septembre 2014, 16:38
+ *
+ * Modified by Berney Alec, Forestier Quentin, Herzig Melvyn on 25 sep 2020
  */
 
 #include <cstdlib>
@@ -16,7 +18,14 @@
 
 using namespace std;
 
-string lastParent(const vector<string>& parents);
+ostream& operator<<(ostream& os, const vector<string>& v)
+{
+   for(const string& elem : v)
+   {
+      os << elem << endl;
+   }
+   return os;
+}
 
 int main (int argc, char **argv)
 {
@@ -37,15 +46,13 @@ int main (int argc, char **argv)
    vector<string> parents;
    parents.push_back(source);
 
-   while(lastParent(parents) != sink)
+   //Pour chaque nouveau parent nous insérons son parent.
+   while(parents.back() != sink)
    {
-      parents.push_back( SG.symbol( bfs.parentOf( SG.index(lastParent(parents)))));
+      parents.push_back( SG.symbol( bfs.parentOf( SG.index( parents.back()))));
    }
 
-   for(const string& parent : parents)
-   {
-      cout << parent << endl;
-   }
+  cout << parents;
 
    cout << endl;
 
@@ -55,15 +62,7 @@ int main (int argc, char **argv)
 
    vector<string> films = SG.adjacent(actor);
 
-   for(const string& film : films)
-   {
-      cout << film << endl;
-   }
+   cout << films;
 
    return EXIT_SUCCESS;
-}
-
-string lastParent(const vector<string>& parents)
-{
-   return parents[parents.size()-1];
 }

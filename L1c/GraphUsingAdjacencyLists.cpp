@@ -3,6 +3,7 @@
  * Author: Olivier Cuisenaire
  * Created on 19. septembre 2014, 04:51
  * Modified by Antoine Rochat on 8 sep 2020
+ *          by Berney Alec, Forestier Quentin, Herzig Melvyn on 25 sep 2020
  */
 #include "GraphUsingAdjacencyLists.h"
 
@@ -28,6 +29,11 @@ GraphUsingAdjacencyLists::GraphUsingAdjacencyLists (std::istream &s)
    }
 }
 
+/**
+ * @brief Pour deux somments, ajoute une arrête dans la liste d'adjacence.
+ * @param v sommet v.
+ * @param w sommet w.
+ */
 void GraphUsingAdjacencyLists::addEdge (int v, int w)
 {
    adjacencyLists.at(v).push_back(w);
@@ -38,11 +44,20 @@ void GraphUsingAdjacencyLists::addEdge (int v, int w)
    }
 }
 
+/**
+ * @brief Pour un sommet, retourne la liste d'adjacence.
+ * @param v Sommet à retourner la liste d'adjacence.
+ * @return Liste de int des sommets adjacents.
+ */
 GraphUsingAdjacencyLists::Iterable GraphUsingAdjacencyLists::adjacent (int v) const
 {
    return adjacencyLists.at(v);
 }
 
+/**
+ * @brief Indique l'ordre du graphe.
+ * @return Retourne le nombre de sommets.
+ */
 int GraphUsingAdjacencyLists::V () const
 {
    return (int) adjacencyLists.size();
