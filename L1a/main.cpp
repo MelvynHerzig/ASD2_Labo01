@@ -3,6 +3,7 @@
  * Author: Olivier Cuisenaire
  * Created on 4 sept. 2014, 13:18:18
  * Modified by Andrei Popescu-Belis on 17 sep 2019
+ *          by Alec Berney, Quentin Forestier et Melvyn Herzig on 15 sep 2020
  */
 #include <stdlib.h>
 #include <iostream>
@@ -16,6 +17,13 @@
 using namespace std;
 
 // Retourne le nombre d'aretes
+/**
+ * @brief compte et retourne le nombre d'arêtes contenues dans le graph donné
+ * @tparam Graph
+ * @param G un Graph à analyser
+ * @return un entier correspondant au nombre d'arêtes du graphe
+ */
+ // changer le unsigned en int pour être cohérent avec le prototype de la fonction??
 template<typename Graph>
 int CountEdges (const Graph &G)
 {
