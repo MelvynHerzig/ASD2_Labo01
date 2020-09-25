@@ -16,6 +16,8 @@
 
 using namespace std;
 
+string lastParent(const vector<string>& parents);
+
 int main (int argc, char **argv)
 {
 
@@ -32,11 +34,18 @@ int main (int argc, char **argv)
    // Affiche le chemin acteur->film->acteur->...->film->acteur
    cout << "Chemin entre " << source << " et " << sink << " :" << endl;
 
-/****
-*
-*  A IMPLEMENTER
-*
-****/
+   vector<string> parents;
+   parents.push_back(source);
+
+   while(lastParent(parents) != sink)
+   {
+      parents.push_back( SG.symbol( bfs.parentOf( SG.index(lastParent(parents)))));
+   }
+
+   for(const string& parent : parents)
+   {
+      cout << parent << endl;
+   }
 
    cout << endl;
 
@@ -44,12 +53,17 @@ int main (int argc, char **argv)
    string actor = "Keanu Reeves";
    cout << "Tous les films avec " << actor << " : " << endl;
 
-/****
-*
-*  A IMPLEMENTER
-*
-****/
+   vector<string> films = SG.adjacent(actor);
+
+   for(const string& film : films)
+   {
+      cout << film << endl;
+   }
 
    return EXIT_SUCCESS;
 }
 
+string lastParent(const vector<string>& parents)
+{
+   return parents[parents.size()-1];
+}

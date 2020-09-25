@@ -14,6 +14,7 @@
 #include <sstream>
 #include <algorithm>
 #include <vector>
+#include <list>
 #include <map>
 
 #include "Util.h"
@@ -65,7 +66,7 @@ public:
 
       while (std::getline(s, line))
       {
-         bool isFilm = true;
+         isFilm = true;
          auto names = split(line, delim);
 
          for (const auto &name : names)
@@ -88,7 +89,7 @@ public:
       }
       s.close();
 
-      g = G(cnt);
+      g = new Graph(cnt);
 
       for(auto it = edges.begin(); it != edges.end(); ++it)
       {
@@ -113,7 +114,7 @@ public:
    }
 
    /**
-    * Retourne le nom d'un numero de sommet.
+    * @brief Retourne le nom d'un numero de sommet.
     * @param idx Numéro de sommet
     * @return le nom du sommet si l'id est trouvé sinon chaine vide.
     * @details Idx doit être entre >= 0 et < m.size() (nombre de sommet du graphe).
@@ -138,7 +139,21 @@ public:
    //symboles adjacents a un symbole
    std::vector<std::string> adjacent (const std::string &name) const
    {
-      
+      std::vector<std::string> adjName;
+      int v = 0;
+
+      if(!contains(name)) return adjName;
+
+      v = index(name);
+
+      std::list<int> adjNum = g->adjacent(v);
+
+      for(auto it = adjNum.begin(); it != adjNum.end();  ++it)
+      {
+         adjName.push_back( symbol(*it) );
+      }
+
+      return adjName;
    }
 
    const Graph &G () const
