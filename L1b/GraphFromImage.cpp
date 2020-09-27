@@ -10,7 +10,7 @@
 GraphFromImage::GraphFromImage (const bitmap_image &i) : image(i)
 {}
 
-// throws std::out_of_range
+
 GraphFromImage::Iterable GraphFromImage::adjacent (int v) const
 {
    Iterable adj;
@@ -47,6 +47,7 @@ GraphFromImage::Iterable GraphFromImage::adjacent (int v) const
    return adj;
 }
 
+
 // throws std::out_of_range
 int GraphFromImage::idx (int x, int y) const
 {
@@ -78,7 +79,7 @@ int GraphFromImage::V () const
    return image.width() * image.height();
 }
 
-bool GraphFromImage::comparePixelColor( int x1, int y1, int x2, int y2) const
+bool GraphFromImage::comparePixelColor(unsigned int x1, unsigned int y1, unsigned int x2, unsigned int y2) const
 {
    unsigned char r1, g1, b1;
    unsigned char r2, g2, b2;

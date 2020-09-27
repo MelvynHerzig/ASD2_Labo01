@@ -4,6 +4,8 @@
  *
  * Created on 2. octobre 2014, 12:09
  * Updated on 8. septembre 2020 by Antoine Rochat
+ *
+ * Modified by Berney Alec, Forestier Quentin, Herzig Melvyn on 25 sep 2020
  */
 #ifndef GRAPHFROMIMAGE_H
 #define   GRAPHFROMIMAGE_H
@@ -24,28 +26,60 @@ public:
 
    typedef std::list<int> Iterable;
 
-   // Retourne les sommets adjacents au sommet v, THROWS std::out_of_range
+   /**
+    * @brief Retourne les sommets adjacents au sommet v
+    * @param v Numero du sommet
+    * @return Liste contenant tous les sommets adjacents au sommet souhaité
+    * @throw std::out_of_range
+    */
    Iterable adjacent (int v) const;
 
-   // Retourne le nombre de sommets
+   /**
+    * @brief Retourne le nombre de sommets du graphe
+    * @return int contenant le nombre de sommets du graphe
+    */
    int V () const;
 
    // Méthodes permettants de passer de x/y à idx et vice-versa
    // THROWS std::out_of_range
 
-   // Index du sommet représentant le pixel a la position x, y
+   /**
+    * @brief Index du sommet représentant le pixel a la position x, y
+    * @param x Position x du pixel
+    * @param y Position y du pixel
+    * @return Retourne l'index du sommet
+    * @throw std::out_of_range
+    */
    int idx (int x, int y) const;
 
-   // Coordonnée x du sommet idx
+   /**
+    * @brief Coordonné x du sommet idx
+    * @param idx Index du sommet
+    * @return Cordonné x du sommet souhaité
+    * @throw std::out_of_range
+    */
    int x (int idx) const;
 
-   // Coordonnée y du sommet idx
+   /**
+    * @brief Coordonné y du sommet idx
+    * @param idx Index du sommet
+    * @return Coordonné y du sommet souhaité
+    * @throw std::out_of_range
+    */
    int y (int idx) const;
 
 // ELEMENTS PRIVES: LIBRE D'AJOUTER DES ELEMENTS
 private:
 
-   bool comparePixelColor( int x1, int y1, int x2, int y2) const;
+   /**
+    * @brief Compare la couleur de 2 pixels
+    * @param x1 Coordonné x du premier pixel
+    * @param y1 Coordonné y du premier pixel
+    * @param x2 Coordonné x du deuxième pixel
+    * @param y2 Coordonné y du deuxième pixel
+    * @return True si les 2 pixels ont la même couleur
+    */
+   bool comparePixelColor(unsigned int x1, unsigned int y1, unsigned int x2, unsigned int y2) const;
 
    const bitmap_image &image;
 };
