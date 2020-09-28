@@ -16,18 +16,16 @@
 
 using namespace std;
 
-// Retourne le nombre d'aretes
 /**
  * @brief compte et retourne le nombre d'arêtes contenues dans le graph donné
  * @tparam Graph
  * @param G un Graph à analyser
  * @return un entier correspondant au nombre d'arêtes du graphe
  */
- // changer le unsigned en int pour être cohérent avec le prototype de la fonction??
 template<typename Graph>
 int CountEdges (const Graph &G)
 {
-   unsigned nbEdges = 0;
+   int nbEdges = 0;
 
    for(unsigned i = 0; i < G.V(); ++i)
    {

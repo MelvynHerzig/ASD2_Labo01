@@ -35,24 +35,31 @@ GraphUsingAdjacencyMatrix::GraphUsingAdjacencyMatrix (int V)
  * @brief créé et ajoute une arête entre 2 sommets
  * @param v un entier correspondant au 1er sommet
  * @param w un entier correspondant au 2ème sommet
+ *
+ * La fonction n'ajoute pas l'arête si les sommets passés en paramètres ne sont pas
+ * correctes (ne font pas partie du graphe)
  */
-// vérifier les sommets donnés?
 void GraphUsingAdjacencyMatrix::addEdge (int v, int w)
 {
+   if(v < 0 or w < 0 or v > this->V() or w > this->V())
+       return;
    adjMatrix.at(v).at(w) = true;
    adjMatrix.at(w).at(v) = true;
 }
 
-// voisins du sommet v
 /**
  * @brief créé et retourne la liste d'adjacence du sommet donné en paramètre
  * @param v un entier correspondant à un sommet du graphe
  * @return une liste d'entier étant la liste d'adjacence du sommet donné
+ *
+ * La fonction retourne une liste d'adjacence vide si le sommet passé en paramètres
+ * n'est pas correcte (ne fait pas partie du graphe)
  */
- // vérifier le sommet donné?
 Iterable GraphUsingAdjacencyMatrix::adjacent (int v) const
 {
    Iterable adj;
+   if(v < 0 or v > this->V())
+       return adj;
 
    for (int w = 0; w < V(); ++w)
    {
@@ -64,7 +71,6 @@ Iterable GraphUsingAdjacencyMatrix::adjacent (int v) const
    return adj;
 }
 
-// ordre du graphe
 /**
  * @brief donne l'ordre du graphe
  * @return un entier inqiquant l'ordre du graphe
