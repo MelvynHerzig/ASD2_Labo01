@@ -32,34 +32,32 @@ GraphUsingAdjacencyMatrix::GraphUsingAdjacencyMatrix (int V)
 }
 
 /**
- * @brief créé et ajoute une arête entre 2 sommets
- * @param v un entier correspondant au 1er sommet
- * @param w un entier correspondant au 2ème sommet
- *
- * La fonction n'ajoute pas l'arête si les sommets passés en paramètres ne sont pas
- * correctes (ne font pas partie du graphe)
+ * @brief Crée et ajoute une arête entre 2 sommets.
+ * @param v Entier correspondant au 1er sommet.
+ * @param w Entier correspondant au 2ème sommet.
+ * @details La fonction n'ajoute pas l'arrête si les sommets passés en paramètre ne
+ *         font pas partie du graphe.
  */
 void GraphUsingAdjacencyMatrix::addEdge (int v, int w)
 {
-   if(v < 0 or w < 0 or v > this->V() or w > this->V())
-       return;
+   if(v < 0 || w < 0 || v >= V() || w >= V()) return;
+
    adjMatrix.at(v).at(w) = true;
    adjMatrix.at(w).at(v) = true;
 }
 
 /**
- * @brief créé et retourne la liste d'adjacence du sommet donné en paramètre
- * @param v un entier correspondant à un sommet du graphe
- * @return une liste d'entier étant la liste d'adjacence du sommet donné
- *
- * La fonction retourne une liste d'adjacence vide si le sommet passé en paramètres
- * n'est pas correcte (ne fait pas partie du graphe)
+ * @brief Crée et retourne la liste d'adjacence du sommet donné en paramètre.
+ * @param v Entier correspondant à un sommet du graphe.
+ * @return Retourne la liste d'adjacence du sommet donné.
+ * @details La fonction retourne une liste d'adjacence vide si le sommet passé en
+ *          paramètre ne fait pas partie du graphe.
  */
 Iterable GraphUsingAdjacencyMatrix::adjacent (int v) const
 {
    Iterable adj;
-   if(v < 0 or v > this->V())
-       return adj;
+
+   if(v < 0 || v >= V()) return adj;
 
    for (int w = 0; w < V(); ++w)
    {
@@ -72,8 +70,8 @@ Iterable GraphUsingAdjacencyMatrix::adjacent (int v) const
 }
 
 /**
- * @brief donne l'ordre du graphe
- * @return un entier inqiquant l'ordre du graphe
+ * @brief Donne l'ordre du graphe.
+ * @return Retourne un entier inqiquant l'ordre du graphe.
  */
 int GraphUsingAdjacencyMatrix::V () const
 {
@@ -82,8 +80,8 @@ int GraphUsingAdjacencyMatrix::V () const
 
 void GraphUsingAdjacencyMatrix::Init (int V)
 {
-
    adjMatrix.resize(V);
+
    for (int v = 0; v < V; v++)
    {
       adjMatrix[v].resize(V);

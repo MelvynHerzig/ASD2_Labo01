@@ -17,10 +17,9 @@
 using namespace std;
 
 /**
- * @brief compte et retourne le nombre d'arêtes contenues dans le graph donné
- * @tparam Graph
- * @param G un Graph à analyser
- * @return un entier correspondant au nombre d'arêtes du graphe
+ * @brief Calcul la taille du graphe.
+ * @param G Graph à analyser.
+ * @return Retourne la taille du graphe.
  */
 template<typename Graph>
 int CountEdges (const Graph &G)

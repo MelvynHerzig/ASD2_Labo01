@@ -6,7 +6,6 @@
  * Inspiré par http://oracleofbacon.org 
  * 
  * Created on 26. septembre 2014, 16:38
- *
  * Modified by Berney Alec, Forestier Quentin, Herzig Melvyn on 25 sep 2020
  */
 
@@ -18,6 +17,12 @@
 
 using namespace std;
 
+/**
+ * @brief Surcharge de l'opérateur de flux <<
+ * @param os Flux de sortie
+ * @param v Vecteur de string
+ * @return Le flux de sortie concaténé avec le vecteur.
+ */
 ostream& operator<<(ostream& os, const vector<string>& v)
 {
    for(const string& elem : v)

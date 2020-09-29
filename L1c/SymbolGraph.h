@@ -4,7 +4,6 @@
  * Modified: Raphaël Racine (2018), Antoine Rochat (2020)
  *
  * Created on 26. septembre 2014, 15:08
- *
  * Modified by Berney Alec, Forestier Quentin, Herzig Melvyn on 25 sep 2020
  */
 #ifndef SYMBOLGRAPH_H

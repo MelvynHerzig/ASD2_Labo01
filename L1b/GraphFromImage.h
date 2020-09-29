@@ -4,8 +4,7 @@
  *
  * Created on 2. octobre 2014, 12:09
  * Updated on 8. septembre 2020 by Antoine Rochat
- *
- * Modified by Berney Alec, Forestier Quentin, Herzig Melvyn on 25 sep 2020
+ * Modified on 25. septembre 2020 by Berney Alec, Forestier Quentin, Herzig Melvyn
  */
 #ifndef GRAPHFROMIMAGE_H
 #define   GRAPHFROMIMAGE_H
